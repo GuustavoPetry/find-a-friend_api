@@ -26,8 +26,11 @@ model Organization {
   id String @id @default(uuid())
   name String 
   email String @unique
+  password String 
   whatsapp String @unique
   adress String
+
+  pets Pet[]
 
   @@map("organizations")
 }
@@ -37,6 +40,9 @@ model Pet {
   specie Specie
   size Size
   age Int
+
+  organization Organization @relation(fields: [organization_id], references: [id])
+  organization_id String
 
   @@map("pets")
 }
