@@ -15,8 +15,13 @@ export class InMemoryOrganization implements OrganizationRepository {
             adress: data.adress,
         }
 
-        this.items.push(organization)
+        this.items.push(organization);
 
         return organization;
     }
+
+    async findByEmail(email: string) {
+        return this.items.find((item) => item.email === email) ?? null;
+    }
+
 }

@@ -5,7 +5,7 @@ import { OrganizationService } from "./organization.service";
 let organizationRepository: InMemoryOrganization;
 let sut: OrganizationService;
 
-describe("Organization Service", () => {
+describe("Create Organization Service", () => {
     beforeEach(() => {
         organizationRepository = new InMemoryOrganization();
         sut = new OrganizationService(organizationRepository);
@@ -20,13 +20,33 @@ describe("Organization Service", () => {
             adress: "Vila Itoupava - Blumenau - SC"
         });
 
-        console.log(organization)
-
         expect(organization).toEqual(
             expect.objectContaining({
                 id: expect.any(String),
                 name: "Gustavo Petry"
             })
         );
+    });
+
+    it("should be able to find organization for email", async () => {
+        await sut.execute({
+            name: "ORG-1",
+            email: "org1@gmail.com",
+            password:"123456",
+            whatsapp: "47123654999",
+            adress: "Blumenau - SC"
+        });
+
+        await sut.execute({
+            name: "ORG-2",
+            email: "org2@gmail.com",
+            password:"123456",
+            whatsapp: "47123654999",
+            adress: "Blumenau - SC"
+        });
+
+        const organization = await organizationRepository.findByEmail("org2@gmail.com");
+
+        expect(organization).toEqual(expect.objectContaining({ email: "org2@gmail.com" }))
     });
 });

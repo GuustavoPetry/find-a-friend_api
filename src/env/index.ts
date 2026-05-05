@@ -1,3 +1,4 @@
+import "dotenv/config";
 import z from "zod";
 
 const envSchema = z.object({
@@ -11,7 +12,7 @@ const _env = envSchema.safeParse(process.env);
 if (_env.success === false) {
     console.log("Invalid Environment Variables", z.treeifyError(_env.error));
 
-    throw new Error("Invalid Credential Variables");
+    throw new Error("Invalid Environment Variables");
 }
 
 export const env = _env.data;

@@ -8,4 +8,14 @@ export class PrismaOrganizationRepository implements OrganizationRepository {
 
         return organization;
     }
+
+    async findByEmail(email: string) {
+        const organization = await prisma.organization.findUnique({
+            where: {
+                email
+            }
+        });
+
+        return organization;
+    }
 }
