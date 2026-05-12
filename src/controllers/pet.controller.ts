@@ -13,7 +13,7 @@ export async function petController(request: FastifyRequest, reply: FastifyReply
 
     const { specie, size, age } = createPetSchema.parse(request.body);
 
-    const organization_id = request.user.sub
+    const organization_id = request.user.sub;
 
     try {
         const service = makePetService();

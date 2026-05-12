@@ -17,17 +17,23 @@ export class PrismaPetRepository implements PetRepository {
         return pet;
     }
 
-    async fetchPetsForCity(city: string) {
-        const pets = await prisma.pet.findMany({
-            where: {
-                organization: {
-                    adress: {
-                        contains: city,
-                        mode: "insensitive"
-                    }
-                },
-            },
-        });
+    async fetchPetsForCity(city: string, size?: Size, specie?: Specie, age?: number) {
+        const where: Prisma.PetWhereInput = {
+            organization: {
+                adress: {
+                    contains: city,
+                    mode: "insensitive"
+                }
+            }
+        }
+
+        if (size !== undefined) where.size = size;
+
+        if (specie !== undefined) where.specie = specie;
+
+        if (age !== undefined) where.age = age;
+
+        const pets = await prisma.pet.findMany({ where })
 
         return pets;
     }

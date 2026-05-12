@@ -1,7 +1,7 @@
-import { Pet, Prisma } from "@prisma/client";
+import { Pet, Prisma, Size, Specie } from "@prisma/client";
 
 export interface PetRepository {
     create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>;
 
-    fetchPetsForCity(city: string): Promise<Pet[] | null>;
+    fetchPetsForCity(city: string, size?: Size, specie?: Specie, age?: number): Promise<Pet[] | null>;
 }

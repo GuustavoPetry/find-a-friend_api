@@ -19,6 +19,7 @@ export async function authenticateController(request: FastifyRequest, reply: Fas
         });
 
         const token = await reply.jwtSign(
+            {},
             {
                 sign: {
                     sub: organization.id
