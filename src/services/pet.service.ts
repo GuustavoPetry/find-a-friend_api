@@ -1,4 +1,4 @@
-import { Pet, Prisma, Size, Specie } from "@prisma/client";
+import { Pet, Size, Specie } from "@prisma/client";
 import { PetRepository } from "../repositories/pet-repository";
 
 interface CreatePetRequest {

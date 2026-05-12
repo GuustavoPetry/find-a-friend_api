@@ -1,7 +1,6 @@
 import { Prisma, Organization } from "@prisma/client";
 import { OrganizationRepository } from "../organization-repository";
 import { randomUUID } from "node:crypto";
-import { compare } from "bcryptjs";
 
 export class InMemoryOrganization implements OrganizationRepository {
     public items: Organization[] = [];
