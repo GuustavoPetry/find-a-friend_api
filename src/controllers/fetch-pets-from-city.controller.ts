@@ -4,14 +4,14 @@ import { makeFethPetsFromCityService } from "../services/factories/make-fetch-pe
 import { Size, Specie } from "@prisma/client";
 
 export async function fetchPetsFromCityController(request: FastifyRequest, reply: FastifyReply) {
-    const bodySchema = z.object({
+    const querySchema = z.object({
         city: z.string(),
         size: z.enum(Size).optional(),
         specie: z.enum(Specie).optional(),
         age: z.coerce.number().optional()
     });
 
-    const { city, size, specie, age } = bodySchema.parse(request.body);
+    const { city, size, specie, age } = querySchema.parse(request.query);
 
     try {
         const service = makeFethPetsFromCityService();

@@ -1,7 +1,6 @@
-import { Prisma, Size, Specie } from "@prisma/client";
+import { Pet, Prisma, Size, Specie } from "@prisma/client";
 import { PetRepository } from "../pet-repository";
 import { prisma } from "../../libs/prisma";
-import { size } from "zod";
 
 export class PrismaPetRepository implements PetRepository {
     async create(data: Prisma.PetUncheckedCreateInput) {
@@ -36,5 +35,15 @@ export class PrismaPetRepository implements PetRepository {
         const pets = await prisma.pet.findMany({ where })
 
         return pets;
+    }
+
+    async findById(id: string) {
+        const pet = await prisma.pet.findUnique({
+            where: {
+                id
+            }
+        });
+
+        return pet;
     }
 }

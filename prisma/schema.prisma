@@ -12,14 +12,14 @@ datasource db {
 }
 
 enum Size {
-  SMALL
-  AVERAGE
-  BIG
+  small
+  big
+  average
 }
 
 enum Specie {
-  DOG
-  CAT
+  dog
+  cat
 }
 
 model Organization {

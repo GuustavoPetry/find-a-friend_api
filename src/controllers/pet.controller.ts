@@ -1,13 +1,14 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import z from "zod";
 import { makePetService } from "../services/factories/make-pet-service";
+import { Size, Specie } from "@prisma/client";
 
 export async function petController(request: FastifyRequest, reply: FastifyReply) {
     await request.jwtVerify();
 
     const createPetSchema = z.object({
-        specie: z.enum(["DOG", "CAT"]),
-        size: z.enum(["SMALL", "BIG", "AVERAGE"]),
+        specie: z.enum(Specie),
+        size: z.enum(Size),
         age: z.number(),
     });
 
