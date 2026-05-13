@@ -3,6 +3,10 @@ import { PetRepository } from "../pet-repository";
 import { randomUUID } from "node:crypto";
 import { InMemoryOrganization } from "./in-memory-organization";
 
+interface GetPetParams {
+    id: string
+}
+
 export class InMemoryPet implements PetRepository {
     public items: Pet[] = [];
 
@@ -32,4 +36,9 @@ export class InMemoryPet implements PetRepository {
         return pets;
     }
 
+    async findById(id: string) {
+        const pet = this.items.find(item => item.id === id);
+
+        return pet ?? null;
+    }
 }
