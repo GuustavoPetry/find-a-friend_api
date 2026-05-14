@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { beforeEach, describe, expect, it } from "vitest";
 import { OrganizationRepository } from "../repositories/organization-repository";
 import { AuthenticateService } from "./authenticate.service";
@@ -11,7 +12,7 @@ describe("Authenticate Service", () => {
     beforeEach(() => {
         organizationRepository = new InMemoryOrganization();
         sut = new AuthenticateService(organizationRepository);
-    });
+    });    
 
     it("should be able to authenticate", async () => {
         const register = await organizationRepository.create({

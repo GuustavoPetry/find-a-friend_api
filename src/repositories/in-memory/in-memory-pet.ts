@@ -3,10 +3,6 @@ import { PetRepository } from "../pet-repository";
 import { randomUUID } from "node:crypto";
 import { InMemoryOrganization } from "./in-memory-organization";
 
-interface GetPetParams {
-    id: string
-}
-
 export class InMemoryPet implements PetRepository {
     public items: Pet[] = [];
 
