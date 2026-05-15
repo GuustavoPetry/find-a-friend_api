@@ -7,8 +7,6 @@ export async function getPetController(request: FastifyRequest, reply: FastifyRe
         id: z.string()
     });
 
-    console.log("Params:", request.params);
-
     const { id } = paramsSchema.parse(request.params);
 
     try {

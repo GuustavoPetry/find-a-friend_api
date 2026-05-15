@@ -19,11 +19,15 @@ export async function petController(request: FastifyRequest, reply: FastifyReply
     try {
         const service = makePetService();
 
-        service.create({
+        const response = await service.create({
             specie,
             size,
             age,
             organization_id
+        });
+
+        return reply.status(201).send({
+            id: response.pet.id
         });
 
     } catch (err) {
@@ -34,8 +38,6 @@ export async function petController(request: FastifyRequest, reply: FastifyReply
         }
     }
 
-    return reply.status(201).send({
-        message: "Created Pet",
-    });
+
 
 }
